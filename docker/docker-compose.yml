@@ -1,0 +1,23 @@
+---
+    version: '3'
+    services:
+        vulong2505-db:
+            image: vulong2505/final-db:${VER}
+            container_name: vulong2505-db
+            ports:
+                - 6415:6379
+            user: "869629:816966"
+            volumes:
+                - ../data/:/data/
+        vulong2505-api:
+            image: vulong2505/final-api:${VER}
+            container_name: vulong2505-api
+            environment:
+                - REDIS_IP=vulong2505-db
+            ports:
+                - 5035:5000
+        vulong2505-wrk:
+            image: vulong2505/final-wrk:${VER}
+            container_name: vulong2505-wrk
+            environment:
+                - REDIS_IP=vulong2505-db

@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulong25-test-db-deployment
+  labels:
+    username: vulong25
+    env: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vulong25-test-db
+  template:
+    metadata:
+      labels:
+        app: vulong25-test-db
+        username: vulong25
+        env: test
+    spec:
+      containers:
+        - name: vulong25-test-db
+          image: vulong2505/final-db:latest
+          imagePullPolicy: Always
+          command: ["redis-server"]
+          volumeMounts:
+          - name: vulong25-test-db-pvc
+            mountPath: "/data"
+      volumes:
+      - name: vulong25-test-db-pvc
+        persistentVolumeClaim:
+          claimName: vulong25-test-db-pvc
+...

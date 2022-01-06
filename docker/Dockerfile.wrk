@@ -1,0 +1,13 @@
+FROM python:3.6.13
+
+RUN pip3 install hotqueue==0.2.8 \
+                 matplotlib==3.3.4 \
+                 redis==3.5.3 \
+                 numpy \
+                 pandas
+
+COPY ./src /app/
+
+WORKDIR /app
+
+CMD ["python", "/app/worker.py"]

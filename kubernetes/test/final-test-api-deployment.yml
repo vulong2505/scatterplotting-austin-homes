@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulong25-test-api-deployment
+  labels:
+    username: vulong25
+    env: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vulong25-test-api
+  template:
+    metadata:
+      labels:
+        app: vulong25-test-api
+        username: vulong25
+        env: test
+    spec:
+      containers:
+        - name: vulong25-test-api
+          image: vulong2505/final-api:latest
+          imagePullPolicy: Always
+          command: ["python3"]
+          args: ["api.py"]
+          env:
+            - name: REDIS_IP
+              value: "10.244.3.60"
+            - name: WORKER_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+          ports:
+            - containerPort: 5000
+...

@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vulong25-test-api-service
+  labels:
+    env: test
+spec:
+  type: ClusterIP
+  selector:
+    app: vulong25-test-api
+  ports:
+  - name: flask-port
+    port: 5000
+    targetPort: 5000
+...
