@@ -12,10 +12,32 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def help():
     return """
-    blah blah blah
-    put stuff here
+    /data/load \n
+    - Loads the .json onto the redis database. \n \n
+
+    /data/reset_jobs \n
+    - Clears the jobs database. \n \n
+
+    /run \n
+    - Creates POST for a job based on a parameter, start, and end. \n \n
     
-    Hello world! \n
+    /jobs \n 
+    - Lists all performed jobs and relevant information. \n \n
+
+    /download/jid \n
+    - Downloads image for a performed job using the relevant jid. \n \n
+
+    /data/add_house \n
+    - Creates and adds a new entry to the database. \n \n
+
+    /data/get/Project_ID \n
+    - Reads an assigned project ID for a house and prints out its property data. \n \n
+
+    /data/update \n
+    - Updates an existing property based on project id, a parameter, and the desired change. \n \n
+    
+    /data/delete/Project_ID \n
+    - Deletes a property from the database. \n
     """
 
 
